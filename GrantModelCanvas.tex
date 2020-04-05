@@ -1,9 +1,18 @@
 \documentclass{article}
 
-% adapted "business" version from latex code:
-% https://rememberthecmd.blogspot.com/2015/02/draw-business-model-generation-canvas.html
-% and the "grant" version (not latex):
-% https://gregglab.neuro.utah.edu/2018/10/30/the-grant-model-canvas-for-developing-great-grants/
+% Adapted from Alejandro Ochoa's Grant Model Canvas:
+% https://github.com/OchoaLab/grantModelCanvas
+
+% His notes regarding inspiration for the code:
+%       adapted "business" version from latex code:
+%       https://rememberthecmd.blogspot.com/2015/02/draw-business-model-generation-canvas.html
+%       and the "grant" version (not latex):
+%       https://gregglab.neuro.utah.edu/2018/10/30/the-grant-model-canvas-for-developing-great-grants/
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% DOCUMENT START %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[landscape,margin=0in]{geometry}
 %\usepackage[english]{babel}
@@ -17,12 +26,12 @@
 
 \usepackage{tikz}
 
-\title{\vspace{-1em}The Grant Model Canvas}
-\author{Alejandro Ochoa --- \href{mailto:alejandro.ochoa@duke.edu}{\nolinkurl{alejandro.ochoa@duke.edu} } --- \url{https://ochoalab.github.io/}}
+\title{\vspace{-1em}Lean Canvas}
+\author{Florian Minges --- \href{mailto:florianminges@gmail.com}{\nolinkurl{florianminges@gmail.com} } }
 \date{
-  \textbf{\color{black!50}Version:} \today
+  \textbf{\color{black!50}Revision number:} 001
   ~\textbf{\color{black!50}---}
-  \textbf{\color{black!50}Due date:} ????-??-??
+  \textbf{\color{black!50}Date:} \today
 }
 
 
@@ -40,6 +49,10 @@
       bloc/.style={
         rectangle, rounded corners,
         draw=black!30, very thick, inner sep=0,
+      },
+      invisible/.style={
+        rectangle, draw=none,
+        inner sep=0,
       },
       bloc1/.style={
         bloc,
@@ -59,139 +72,116 @@
         minimum width=\layerwidth/2,
         minimum height=\layersep
       },
+      invisible_bloc1/.style={
+        invisible,
+        text width=\layerwidth/5*0.95,
+        minimum width=\layerwidth/5,
+        minimum height=\layersep
+      },
+      invisible_bloc2/.style={
+        invisible,
+        text width=\layerwidth/5*0.95,
+        minimum width=\layerwidth/5,
+        minimum height=3*\layersep
+      },
       title/.style={
+        anchor=north west,
+        color=black!50,
+        font=\bfseries
+      },
+      subtitle/.style={
         anchor=north west,
         color=black!50,
         font=\bfseries
       },
     ]
     
-    %%%%%%%%%%%%%%%%%%%%%%%%
-    %%% DRAW THE CANVAS
-    %%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%% DRAW THE CANVAS %%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%
 
     % first the block, then the title
     
-    % PROBLEM
-    \node[bloc1] (b1) at (0*\layerwidth/10,4*\layersep) {
-      Clearly state the real world problem your project will address.
-      What are the top 3 elements of the problem?
-      \begin{itemize}
-      \item Text
-      \item More text
-      \end{itemize}
-    };
+    % 1. PROBLEM
+    \node[bloc1] (b1) at (0*\layerwidth/10,4*\layersep) {};
     \node[title] at (b1.north west) {\underline{1. Problem}};
+    
+    \node[invisible_bloc2] (b11) at (0*\layerwidth/10,4.45*\layersep) {
+      List your top 1-3 problems.
+    };
+    
+    \node[invisible_bloc1] (b12) at (0*\layerwidth/10,2.5*\layersep) {
+      List how these problems are solved today.
+    };
+    \node[title] at (b12.north west) {\underline{Existing Alternatives}};
 
-    % TARGET AUDIENCE
+    % 4. SOLUTION
     \node[bloc2] (b2) at (2*\layerwidth/10,5*\layersep) {
-      Who is seeking a solution to this problem?
-      Who would buy into your solution by funding your grant?
-      What type of colleague/expert are you selling to?
-      \begin{itemize}
-      \item Text
-      \item More text
-      \end{itemize}
+      Outline a possible solution for each problem.
     };
-    \node[title] at (b2.north west) {\underline{2. Target audience}};
+    \node[title] at (b2.north west) {\underline{4. Solution}};
 
-    % SOLUTION
+    % 8. KEY METRICS
     \node[bloc2] (b3) at (2*\layerwidth/10,3*\layersep) {
-      State your proposed solution to the stated problem.
-      What is your big idea?
-      What are the top 3 features of your solution.
-      \begin{itemize}
-      \item Text
-      \item More text
-      \end{itemize}
+      List the key numbers that tell you how your business is doing.
     };
-    \node[title] at (b3.north west) {\underline{3. Solution}};
+    \node[title] at (b3.north west) {\underline{8. Key Metrics}};
 
-    % WHAT IS KNOWN?
+    % 7. COST STRUCTURE
     \node[bloc3] (b4) at (1.5*\layerwidth/10,1.5*\layersep) {
-      Indicate the key knowledge and competing technology that already exists.
-      What is the state of the field?
-      \begin{itemize}
-      \item Text
-      \item More text
-      \end{itemize}
+      List your fixed and variable costs.
     };
-    \node[title] at (b4.north west) {\underline{4. What is Known?}};
+    \node[title] at (b4.north west) {\underline{7. Cost Structure}};
 
-    % WHAT IS UNKNOWN?
+    % 6. REVENUE STREAMS
     \node[bloc3] (b5) at (6.5*\layerwidth/10,1.5*\layersep) {
-      Indicate the critical knowledge/technology that is lacking, but needed to solve the stated problem.
-      \begin{itemize}
-      \item Text
-      \item More text
-      \end{itemize}
+      List your sources of revenue.
     };
-    \node[title] at (b5.north west) {\underline{5. What is Unknown?}};
+    \node[title] at (b5.north west) {\underline{6. Revenue Streams}};
 
-    % VALUE PROPOSITIONS
-    \node[bloc1] (b6) at (4*\layerwidth/10,4*\layersep) {
-      Clearly state the value of your proposed solution.
-      What is the \#1 contribution that your grant will deliver?
-      How does it address the problem and critical gaps in knowledge.
-      Your value proposition clearly states how the knowledge/technology your grant will create solves your target audience’s problem or improves their situation (relevancy to your target audience).
-      Your value proposition must indicate specific benefits (value) and explain to a grant reviewer why they should buy into your grant and not the ones you are competing against (unique differentiation).
-      \begin{itemize}
-      \item Text
-      \item More text
-      \end{itemize}
+    % 3. VALUE PROPOSITIONS
+    \node[bloc1] (b6) at (4*\layerwidth/10,4*\layersep) {};
+    \node[title] at (b6.north west) {\underline{3. Value Propositions}};
+    
+    \node[invisible_bloc2] (b61) at (4*\layerwidth/10,4.45*\layersep) {
+      Single, clear, compelling message that states why you are different and worth paying attention.
     };
-    \node[title] at (b6.north west) {\underline{6. Value Propositions}};
+    
+    \node[invisible_bloc1] (b62) at (4*\layerwidth/10,2.5*\layersep) {
+      List your X for Y analogy, e.g. YouTube = Flickr for videos.
+    };
+    \node[title] at (b62.north west) {\underline{High-Level Concept}};
 
-    % UNFAIR ADVANTAGE
+    % 9. UNFAIR ADVANTAGE
     \node[bloc2] (b7) at (6*\layerwidth/10,5*\layersep) {
-      What advantages do you have that others do not?
-      This includes proven expertise in the area, preliminary findings that support your case, novel technology or resources.
-      \begin{itemize}
-      \item Text
-      \item More text
-      \end{itemize}
+      Something that cannot easily be bought or copied.
     };
-    \node[title] at (b7.north west) {\underline{7. Unfair Advantage}};
+    \node[title] at (b7.north west) {\underline{9. Unfair Advantage}};
 
-    % EXPECTED IMPACT
+    % 5. CHANNELS
     \node[bloc2] (b8) at (6*\layerwidth/10,3*\layersep) {
-      Clearly indicate the expected impact of your solution.
-      What will the impact be?
-      Which fields will be transformed?
-      Why will it be transformative?
-      How far reaching could the impact be on research, society and healthcare?
-      \begin{itemize}
-      \item Text
-      \item More text
-      \end{itemize}
+      List your path to customers (inbound or outbound).
     };
-    \node[title] at (b8.north west) {\underline{8. Expected Impact}};
+    \node[title] at (b8.north west) {\underline{5. Channels}};
 
-    % KEY RESOURCES NEEDED
-    \node[bloc2] (b9) at (8*\layerwidth/10,5*\layersep) {
-      What key resources or collaborators do you need to be successful?
-      Indicate them here.
-      \begin{itemize}
-      \item Text
-      \item More text
-      \end{itemize}
-    };
-    \node[title] at (b9.north west) {\underline{9. Key Resources Needed}};
 
-    % NOVELTY
-    \node[bloc2] (b10) at (8*\layerwidth/10,3*\layersep) {
-      What is the evidence that your solution is novel?
-      State what is novel about your solution and do some reading to make sure you are right!
-      \begin{itemize}
-      \item Text
-      \item More text
-      \end{itemize}
+    % 2. CUSTOMER SEGMENTS
+    \node[bloc1] (b9) at (8*\layerwidth/10,4*\layersep) {};
+    \node[title] at (b9.north west) {\underline{2. Customer Segments}};
+    
+    \node[invisible_bloc2] (b91) at (8*\layerwidth/10,4.45*\layersep) {
+      List your target customers and users.
     };
-    \node[title] at (b10.north west) {\underline{10. Novelty}};
+    
+    \node[invisible_bloc1] (b92) at (8*\layerwidth/10,2.5*\layersep) {
+      List the characteristics of your ideal customers.
+    };
+    \node[title] at (b92.north west) {\underline{Early Adopters}};
 
   \end{tikzpicture}
 }
 
-Content based heavily on \url{https://gregglab.neuro.utah.edu/2018/10/30/the-grant-model-canvas-for-developing-great-grants/}
+
+The Lean Canvas latex code is based on \href{https://github.com/OchoaLab/grantModelCanvas}{Alejandro Ochoa's Grant Model Canvas}. Lean Canvas is based on \href{https://leanstack.com/leancanvas}{www.leancanvas.com}.
 
 \end{document}
